@@ -207,6 +207,10 @@ body {
 }
 
 /* ── Hobby card ──────────────────────────────────────────── */
+.hobby-card-shell {
+  padding: 40px 48px 48px;
+}
+
 .hobby-header {
   display: flex;
   align-items: center;
@@ -255,8 +259,8 @@ body {
 .hobby-scroller {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 40px) / 2);
-  gap: 40px;
+  grid-auto-columns: calc((100% - 40px) / 2 * 0.6);
+  gap: 110px;
   overflow-x: auto;
   padding-bottom: 14px;
   scroll-snap-type: x mandatory;
@@ -283,11 +287,6 @@ body {
 
 .hobby-scroller::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Project tiles: ~70% the current width with more gap so ~2.4 are visible */
-.hobby-scroller--project {
-  grid-auto-columns: calc((100% - 40px) / 2 * 0.7);
-  gap: 80px;
-}
 
 /* ── Tile ────────────────────────────────────────────────── */
 .tile {
@@ -524,8 +523,7 @@ body {
   #shell { padding: 56px 64px 40px; }
   .about-grid { grid-template-columns: 1fr; }
   .hero-grid  { grid-template-columns: 1fr; }
-  .hobby-scroller { grid-auto-columns: calc(85%); }
-  .hobby-scroller--project { grid-auto-columns: calc(65%); gap: 60px; }
+  .hobby-scroller { grid-auto-columns: calc(58%); gap: 80px; }
 }
 
 @media (max-width: 640px) {

@@ -639,7 +639,7 @@ function buildHobbyCard(title, subtitle, sprite, entries, kind) {
   section.className = 'section';
 
   const card = document.createElement('div');
-  card.className = 'card-shell';
+  card.className = 'card-shell hobby-card-shell';
 
   // Header row
   const header = document.createElement('div');
@@ -676,7 +676,7 @@ function buildHobbyCard(title, subtitle, sprite, entries, kind) {
 
   // Scroller
   const scroller = document.createElement('div');
-  scroller.className = 'hobby-scroller' + (kind === 'project' ? ' hobby-scroller--project' : '');
+  scroller.className = 'hobby-scroller';
 
   entries.forEach(entry => {
     const cell = document.createElement('div');
