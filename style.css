@@ -64,7 +64,7 @@ body {
   background: var(--paper);
   border: 3px solid var(--frame);
   box-shadow: 6px 6px 0 var(--frame-soft);
-  padding: 26px 30px 28px;
+  padding: 52px 60px 56px;
 }
 
 /* ── Section spacing ─────────────────────────────────────── */
@@ -207,10 +207,6 @@ body {
 }
 
 /* ── Hobby card ──────────────────────────────────────────── */
-.hobby-card-shell {
-  padding: 40px 48px 48px;
-}
-
 .hobby-header {
   display: flex;
   align-items: center;
@@ -259,8 +255,8 @@ body {
 .hobby-scroller {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 40px) / 2 * 0.6);
-  gap: 110px;
+  grid-auto-columns: 32%;
+  gap: 96px;
   overflow-x: auto;
   padding-bottom: 14px;
   scroll-snap-type: x mandatory;

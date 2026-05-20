@@ -639,7 +639,7 @@ function buildHobbyCard(title, subtitle, sprite, entries, kind) {
   section.className = 'section';
 
   const card = document.createElement('div');
-  card.className = 'card-shell hobby-card-shell';
+  card.className = 'card-shell';
 
   // Header row
   const header = document.createElement('div');
