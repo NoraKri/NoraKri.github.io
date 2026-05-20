@@ -63,6 +63,9 @@
   color: var(--ink-soft);
   line-height: 1.45;
   margin-top: 6px;
+  position: relative;
+  z-index: 4;
+  text-shadow: none;
 }
 
 .tileTag {

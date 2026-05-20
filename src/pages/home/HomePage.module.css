@@ -4,3 +4,8 @@
   color: var(--ink-soft);
   font-size: 12px;
 }
+
+.aboveCrt {
+  position: relative;
+  z-index: 4;
+}

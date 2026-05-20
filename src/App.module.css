@@ -3,11 +3,43 @@
   min-height: 100vh;
   position: relative;
   padding: 104px 176px 56px;
+  &::before,
+  &::after {
+    content: "";
+    transform: translateZ(0);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 3;
+  }
+
+  &::before {
+    background: repeating-linear-gradient(
+      var(--crt-red)   0px,
+      var(--crt-green) 2px,
+      var(--crt-blue)  4px
+    );
+
+  }
+
+  &::after {
+    background: repeating-linear-gradient(
+      90deg,
+      var(--crt-red)   1px,
+      var(--crt-green) 2px,
+      var(--crt-blue)  3px
+    );
+
+  }
 }
 
 .content {
   position: relative;
-  z-index: 2;
 }
 
 @media (max-width: 1100px) {

@@ -19,6 +19,9 @@
   font-size: 12px;
   color: var(--ink-soft);
   margin-top: 4px;
+  position: relative;
+  z-index: 4;
+  text-shadow: none;
 }
 
 .headerRight {

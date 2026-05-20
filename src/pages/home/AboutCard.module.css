@@ -45,6 +45,9 @@
   font-size: 17px;
   line-height: 1.55;
   color: var(--ink);
+  position: relative;
+  z-index: 4;
+  text-shadow: none;
 }
 
 .divider {
