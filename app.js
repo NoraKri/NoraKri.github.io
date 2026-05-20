@@ -676,7 +676,7 @@ function buildHobbyCard(title, subtitle, sprite, entries, kind) {
 
   // Scroller
   const scroller = document.createElement('div');
-  scroller.className = 'hobby-scroller';
+  scroller.className = 'hobby-scroller' + (kind === 'project' ? ' hobby-scroller--project' : '');
 
   entries.forEach(entry => {
     const cell = document.createElement('div');

@@ -50,7 +50,7 @@ body {
   background: var(--bg-2);
   min-height: 100vh;
   position: relative;
-  padding: 104px 88px 56px;
+  padding: 104px 176px 56px;
 }
 
 /* ── Content wrapper (z-index above sparkles) ─────────────── */
@@ -282,6 +282,12 @@ body {
 }
 
 .hobby-scroller::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Project tiles: ~70% the current width with more gap so ~2.4 are visible */
+.hobby-scroller--project {
+  grid-auto-columns: calc((100% - 40px) / 2 * 0.7);
+  gap: 80px;
+}
 
 /* ── Tile ────────────────────────────────────────────────── */
 .tile {
@@ -515,14 +521,15 @@ body {
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1100px) {
-  #shell { padding: 56px 32px 40px; }
+  #shell { padding: 56px 64px 40px; }
   .about-grid { grid-template-columns: 1fr; }
   .hero-grid  { grid-template-columns: 1fr; }
   .hobby-scroller { grid-auto-columns: calc(85%); }
+  .hobby-scroller--project { grid-auto-columns: calc(65%); gap: 60px; }
 }
 
 @media (max-width: 640px) {
-  #shell { padding: 40px 16px 32px; }
+  #shell { padding: 40px 32px 32px; }
   .intro-row { flex-direction: column; align-items: flex-start; }
   .intro-headline { font-size: 52px; }
   .prev-next-grid { grid-template-columns: 1fr; }
