@@ -1,0 +1,32 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.iconBox {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--accent-2);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 0 var(--frame-soft), 0 6px 16px rgba(40, 30, 20, 0.18);
+  transition: transform .15s ease;
+}
+
+.iconBox:hover { transform: translateY(-2px); }
+
+.handle {
+  font-size: 11px;
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 110px;
+}

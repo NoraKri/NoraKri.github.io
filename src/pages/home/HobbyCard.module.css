@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--frame);
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1;
+  color: var(--accent-2);
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.badge {
+  background: var(--bg);
+  border: 3px solid var(--frame);
+  padding: 8px;
+  box-shadow: 3px 3px 0 var(--frame-soft);
+}
+
+/* ── Scroller ─────────────────────────────────────────────── */
+.scrollerWrap {
+  position: relative;
+}
+
+.scrollerWrap::before,
+.scrollerWrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 14px;
+  width: 48px;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.2s ease;
+}
+
+.scrollerWrap::before {
+  left: 0;
+  background: linear-gradient(to left, transparent, var(--paper));
+  opacity: 0;
+}
+
+.scrollerWrap::after {
+  right: 0;
+  background: linear-gradient(to right, transparent, var(--paper));
+}
+
+.scrollerWrap.atEnd::after  { opacity: 0; }
+.scrollerWrap.scrolled::before { opacity: 1; }
+
+.scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 32%;
+  gap: 96px;
+  overflow-x: scroll;
+  padding-bottom: 14px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--accent-2) var(--bg);
+  scrollbar-width: thin;
+}
+
+.scroller > .cell {
+  scroll-snap-align: start;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroller::-webkit-scrollbar         { height: 12px; -webkit-appearance: none; background: var(--bg); }
+.scroller::-webkit-scrollbar-track   { background: var(--bg); border: 2px solid var(--frame); }
+.scroller::-webkit-scrollbar-thumb   { background: var(--accent-2); border: 2px solid var(--frame); }
+.scroller::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+@media (max-width: 1100px) {
+  .scroller { grid-auto-columns: 58%; gap: 80px; }
+}

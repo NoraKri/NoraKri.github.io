@@ -1,0 +1,6 @@
+.cardShell {
+  background: var(--paper);
+  border: 3px solid var(--frame);
+  box-shadow: 6px 6px 0 var(--frame-soft);
+  padding: 52px 60px 56px;
+}

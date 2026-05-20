@@ -1,0 +1,19 @@
+.shell {
+  background: var(--bg-2);
+  min-height: 100vh;
+  position: relative;
+  padding: 104px 176px 56px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1100px) {
+  .shell { padding: 56px 64px 40px; }
+}
+
+@media (max-width: 640px) {
+  .shell { padding: 40px 32px 32px; }
+}

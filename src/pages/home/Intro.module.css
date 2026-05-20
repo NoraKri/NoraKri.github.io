@@ -1,0 +1,41 @@
+.introRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 104px;
+}
+
+.introLabel {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.introHeadline {
+  margin: 4px 0;
+  font-size: 82px;
+  line-height: 0.95;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.introTagline {
+  font-size: 19px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.introSpriteWrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  padding-right: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .introRow      { flex-direction: column; align-items: flex-start; }
+  .introHeadline { font-size: 52px; }
+}

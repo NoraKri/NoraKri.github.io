@@ -1,0 +1,43 @@
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── CSS variables: Mosegrønn ────────────────────────────── */
+:root {
+  --bg:         #d8dcbe;
+  --bg-2:       #c4ca9c;
+  --paper:      #f6f2dc;
+  --ink:        #1f3018;
+  --ink-soft:   #4f6b3a;
+  --accent:     #4f6b3a;
+  --accent-2:   #324a23;
+  --frame:      #243a1d;
+  --frame-soft: #5a7340;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+body {
+  font-family: 'Fraunces', Georgia, serif;
+  background: var(--bg-2);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── Font helpers (used globally via className) ───────────── */
+.coiny { font-family: 'Coiny', cursive; font-weight: 400; }
+.mono  { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes nora-bob {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-2px); }
+}
+
+@keyframes cat-bob {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-2px); }
+}

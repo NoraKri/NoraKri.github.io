@@ -1,17 +1,17 @@
 /* ── Reset ───────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── CSS variables: Pulverrosa (default) ─────────────────── */
+/* ── CSS variables: Mosegrønn ────────────────────────────── */
 :root {
-  --bg:         #f6e4d4;
-  --bg-2:       #ffe2d0;
-  --paper:      #fff8ee;
-  --ink:        #3a2f3a;
-  --ink-soft:   #6d6875;
-  --accent:     #e5989b;
-  --accent-2:   #b5838d;
-  --frame:      #6d6875;
-  --frame-soft: #b5838d;
+  --bg:         #d8dcbe;
+  --bg-2:       #c4ca9c;
+  --paper:      #f6f2dc;
+  --ink:        #1f3018;
+  --ink-soft:   #4f6b3a;
+  --accent:     #4f6b3a;
+  --accent-2:   #324a23;
+  --frame:      #243a1d;
+  --frame-soft: #5a7340;
 }
 
 /* ── Base ────────────────────────────────────────────────── */
@@ -237,12 +237,6 @@ body {
   flex-shrink: 0;
 }
 
-.hobby-scroll-hint {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
 
 .hobby-badge {
   background: var(--bg);
@@ -252,12 +246,43 @@ body {
 }
 
 /* ── Hobby scroller ──────────────────────────────────────── */
+.hobby-scroller-wrap {
+  position: relative;
+}
+
+.hobby-scroller-wrap::before,
+.hobby-scroller-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 14px;
+  width: 48px;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.2s ease;
+}
+
+.hobby-scroller-wrap::before {
+  left: 0;
+  background: linear-gradient(to left, transparent, var(--paper));
+  opacity: 0;
+}
+
+.hobby-scroller-wrap::after {
+  right: 0;
+  background: linear-gradient(to right, transparent, var(--paper));
+}
+
+.hobby-scroller-wrap.at-start::before { opacity: 0; }
+.hobby-scroller-wrap.at-end::after    { opacity: 0; }
+.hobby-scroller-wrap.scrolled::before { opacity: 1; }
+
 .hobby-scroller {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 32%;
   gap: 96px;
-  overflow-x: auto;
+  overflow-x: scroll;
   padding-bottom: 14px;
   scroll-snap-type: x mandatory;
   scrollbar-color: var(--accent-2) var(--bg);
@@ -267,9 +292,15 @@ body {
 .hobby-scroller > * {
   scroll-snap-align: start;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.hobby-scroller::-webkit-scrollbar { height: 12px; }
+.hobby-scroller::-webkit-scrollbar {
+  height: 12px;
+  -webkit-appearance: none;
+  background: var(--bg);
+}
 
 .hobby-scroller::-webkit-scrollbar-track {
   background: var(--bg);
@@ -288,8 +319,10 @@ body {
 .tile {
   all: unset;
   cursor: pointer;
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100%;
   background: var(--bg);
   border: 3px solid var(--frame);
   box-shadow: 4px 4px 0 var(--frame-soft);
@@ -485,34 +518,6 @@ body {
   margin-top: 40px;
 }
 
-/* ── Palette switcher ────────────────────────────────────── */
-.palette-switcher {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
-  display: flex;
-  flex-direction: row;
-  gap: 6px;
-  align-items: center;
-  background: var(--paper);
-  border: 2px solid var(--frame);
-  box-shadow: 3px 3px 0 var(--frame-soft);
-  padding: 6px 8px;
-}
-
-.palette-btn {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: transform .1s;
-  padding: 0;
-}
-
-.palette-btn:hover  { transform: scale(1.3); }
-.palette-btn.active { border-color: var(--frame); outline: 1px solid var(--paper); }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1100px) {

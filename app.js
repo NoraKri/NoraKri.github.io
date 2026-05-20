@@ -247,33 +247,6 @@ const CONTENT = {
   ],
 };
 
-// ══════════════════════════════════════════════════════════════
-// PALETTES
-// ══════════════════════════════════════════════════════════════
-
-const PALETTES = [
-  { key: 'dusty',      label: 'Pulverrosa',   dot: '#b5838d', vars: { '--bg':'#f6e4d4','--bg-2':'#ffe2d0','--paper':'#fff8ee','--ink':'#3a2f3a','--ink-soft':'#6d6875','--accent':'#e5989b','--accent-2':'#b5838d','--frame':'#6d6875','--frame-soft':'#b5838d' } },
-  { key: 'meadow',     label: 'Eng',          dot: '#3d5a3e', vars: { '--bg':'#eee7d0','--bg-2':'#e3ddc4','--paper':'#fff7e3','--ink':'#2d3a2a','--ink-soft':'#5d6b56','--accent':'#6f8c6c','--accent-2':'#3d5a3e','--frame':'#5d6b56','--frame-soft':'#8aa07a' } },
-  { key: 'twilight',   label: 'Skumring',     dot: '#f4c4d1', vars: { '--bg':'#2b1d3a','--bg-2':'#3a2a4d','--paper':'#4a3661','--ink':'#fde9d6','--ink-soft':'#d1b3d9','--accent':'#f4a8b0','--accent-2':'#f4c4d1','--frame':'#fde9d6','--frame-soft':'#c794c4' } },
-  { key: 'honeyglass', label: 'Honning',      dot: '#a6552d', vars: { '--bg':'#fbe6b6','--bg-2':'#f7d68a','--paper':'#fff6dc','--ink':'#3a261a','--ink-soft':'#7a5532','--accent':'#d97a3a','--accent-2':'#a6552d','--frame':'#5c3a1e','--frame-soft':'#8a5a32' } },
-  { key: 'berryjam',   label: 'Bærsyltetøy', dot: '#7a2a44', vars: { '--bg':'#f6cfd6','--bg-2':'#f0b6c2','--paper':'#fff4f4','--ink':'#3a1024','--ink-soft':'#7a2a44','--accent':'#a83856','--accent-2':'#7a2a44','--frame':'#4a1932','--frame-soft':'#a83856' } },
-  { key: 'mossglass',  label: 'Mosegrønn',    dot: '#324a23', vars: { '--bg':'#d8dcbe','--bg-2':'#c4ca9c','--paper':'#f6f2dc','--ink':'#1f3018','--ink-soft':'#4f6b3a','--accent':'#4f6b3a','--accent-2':'#324a23','--frame':'#243a1d','--frame-soft':'#5a7340' } },
-  { key: 'seaglass',   label: 'Sjøglass',     dot: '#1d5a5e', vars: { '--bg':'#cfe5e2','--bg-2':'#aed4ce','--paper':'#f4faf7','--ink':'#0f2a2c','--ink-soft':'#3f6f6e','--accent':'#3f8a85','--accent-2':'#1d5a5e','--frame':'#1d3a3e','--frame-soft':'#4a8581' } },
-];
-
-let activePalette = 'dusty';
-
-function applyPalette(key) {
-  const pal = PALETTES.find(p => p.key === key) || PALETTES[0];
-  const root = document.documentElement;
-  for (const [prop, val] of Object.entries(pal.vars)) {
-    root.style.setProperty(prop, val);
-  }
-  activePalette = key;
-  document.querySelectorAll('.palette-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.key === key);
-  });
-}
 
 // ══════════════════════════════════════════════════════════════
 // UTILS
@@ -658,11 +631,6 @@ function buildHobbyCard(title, subtitle, sprite, entries, kind) {
   const headerRight = document.createElement('div');
   headerRight.className = 'hobby-header-right';
 
-  const hint = document.createElement('div');
-  hint.className = 'mono hobby-scroll-hint';
-  hint.textContent = '← scroll →';
-  headerRight.appendChild(hint);
-
   const badge = document.createElement('div');
   badge.className = 'hobby-badge';
   const badgeCanvas = document.createElement('canvas');
@@ -684,8 +652,20 @@ function buildHobbyCard(title, subtitle, sprite, entries, kind) {
     scroller.appendChild(cell);
   });
 
+  const scrollerWrap = document.createElement('div');
+  scrollerWrap.className = 'hobby-scroller-wrap';
+  scrollerWrap.appendChild(scroller);
+
+  const updateFades = () => {
+    const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 4;
+    const scrolled = scroller.scrollLeft > 4;
+    scrollerWrap.classList.toggle('at-end', atEnd);
+    scrollerWrap.classList.toggle('scrolled', scrolled);
+  };
+  scroller.addEventListener('scroll', updateFades);
+
   card.appendChild(header);
-  card.appendChild(scroller);
+  card.appendChild(scrollerWrap);
   section.appendChild(card);
   return section;
 }
@@ -833,27 +813,6 @@ function buildDetailPage(kind, entry) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// PALETTE SWITCHER
-// ══════════════════════════════════════════════════════════════
-
-function buildPaletteSwitcher() {
-  const bar = document.createElement('div');
-  bar.className = 'palette-switcher';
-
-  PALETTES.forEach(pal => {
-    const btn = document.createElement('button');
-    btn.className = 'palette-btn' + (pal.key === activePalette ? ' active' : '');
-    btn.dataset.key = pal.key;
-    btn.title = pal.label;
-    btn.style.background = pal.dot;
-    btn.addEventListener('click', () => applyPalette(pal.key));
-    bar.appendChild(btn);
-  });
-
-  return bar;
-}
-
-// ══════════════════════════════════════════════════════════════
 // ROUTER + RENDER
 // ══════════════════════════════════════════════════════════════
 
@@ -921,9 +880,6 @@ function render() {
 window.addEventListener('hashchange', render);
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Inject palette switcher (fixed position, outside shell)
-  document.body.appendChild(buildPaletteSwitcher());
-
   if (!location.hash || location.hash === '#') {
     history.replaceState(null, '', '#');
   }
