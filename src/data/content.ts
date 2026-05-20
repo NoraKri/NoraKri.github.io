@@ -31,11 +31,11 @@ export const CONTENT: {
   name: 'Nora',
   location: 'Bergen, Norge',
   tagline: 'Frontend-utvikler om dagen, hobbysamler om kvelden.',
-  blurb: 'Jeg lager nettsider til daglig og hundre småting bare for moro skyld — klær jeg faktisk kan gå med, malerier til veggen, små spill til meg selv og venner, og apper som fikser de små hverdagsplagene ingen andre bryr seg om.',
+  blurb: 'Jeg lager nettsider til daglig og hundre småting bare for moro skyld — klær jeg faktisk kan gå med, malerier til veggen, små spill ingen andre spiller, og apper som fikser de små hverdagsplagene.',
   contacts: [
+        { kind: 'Email',      handle: 'nora.kristiansen@proton.me', href: 'mailto:nora.kristiansen@proton.me' },
     { kind: 'GitHub',     handle: 'NoraKri',                    href: 'https://github.com/NoraKri' },
     { kind: 'LinkedIn',   handle: 'NoraKri',                    href: 'https://www.linkedin.com/in/NoraKri' },
-    { kind: 'Email',      handle: 'nora.kristiansen@proton.me', href: 'mailto:nora.kristiansen@proton.me' },
     { kind: 'Threadloop', handle: 'NoraKri',                    href: '#' },
   ],
   projects: [
